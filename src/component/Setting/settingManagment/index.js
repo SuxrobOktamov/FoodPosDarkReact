@@ -2,7 +2,18 @@ import React from 'react';
 import Dishes from './Dishes/index';
 import HeaderMenu from './headerMenu';
 
-function SettingManagement({Datas, SetDatas, setFilterDatas, filterDatas, isCorrect, setIsCorrect}) {
+function SettingManagement(
+    {
+        Datas, 
+        SetDatas, 
+        setFilterDatas, 
+        filterDatas, 
+        isCorrect, 
+        setIsCorrect, 
+        isEdit, 
+        setIsEdit, 
+        setIsEditId
+    }) {
     return (
         <div className="setting-managment">
             <h2>Product Management</h2>
@@ -19,7 +30,11 @@ function SettingManagement({Datas, SetDatas, setFilterDatas, filterDatas, isCorr
                 SetDatas={SetDatas}
                 setFilterDatas={setFilterDatas}
                 isCorrect={isCorrect} 
-                setIsCorrect={setIsCorrect} />
+                setIsCorrect={setIsCorrect} 
+                setIsEdit={setIsEdit}
+                isEdit={isEdit}
+                setIsEditId={setIsEditId}
+                />
         </div>
     )
 }

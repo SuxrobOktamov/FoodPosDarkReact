@@ -1,39 +1,29 @@
 import { Button } from '@mui/material';
-import React, { useEffect, useRef, useState } from 'react'
-import Img from '../../../img/image.png';
+import React, { useRef, useState } from 'react'
 
-function AddItem({isCorrect, setIsCorrect, Datas, SetDatas}) {
-    const [count, setCount] = useState(0);
-
+function EditItem({Datas, SetDatas, isEdit, setIsEdit, isEditId }) {
     const FoodName = useRef();
     const FoodPrice = useRef();
     const FoodBowls = useRef();
     const FoodType = useRef();
-    useEffect(()=>{
-        setCount(Datas[Datas.length-1].id + 1);
-    }, [])
+
     const savaFormHandler = (e) => {
         e.preventDefault();
-        SetDatas([
-            ...Datas,
-            {
-                id:count, 
-                text:FoodName.current.value, 
-                price: FoodPrice.current.value,
-                bowls: FoodBowls.current.value,
-                img: Img,
-                count:0,
-                foodType: FoodType.current.value
+        SetDatas(Datas.map(item => {
+            if (item.id === isEditId ){
+                item.text = FoodName.current.value;
+                item.price = FoodPrice.current.value;
+                item.bowls = FoodBowls.current.value;
+                item.foodType = FoodType.current.value;
             }
-        ])
-        setIsCorrect(!isCorrect)
-
+            return item;
+        }))
+        setIsEdit(!isEdit)
     }
 
     const cancelFormHandler = () => {
-        setIsCorrect(!isCorrect)
+        setIsEdit(!isEdit)
     }
-
   return (
     <form className='addItem' onSubmit={savaFormHandler}>
         <div className='control'>
@@ -43,7 +33,7 @@ function AddItem({isCorrect, setIsCorrect, Datas, SetDatas}) {
             </div>
             <div className='form-control'>
                 <label htmlFor='number'>Food price</label>
-                <input ref={FoodPrice} required  type='number' placeholder='2.99 $' />
+                <input ref={FoodPrice} required type='number' placeholder='2.99 $' />
             </div>
         </div>
         <div className='form-control'>
@@ -68,4 +58,4 @@ function AddItem({isCorrect, setIsCorrect, Datas, SetDatas}) {
   )
 }
 
-export default AddItem;
+export default EditItem;

@@ -1,23 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-function Dishes({filterDatas, Datas, SetDatas, setFilterDatas, isCorrect, setIsCorrect}) {
-
-  const [removeDatas, setRemoveDatas] = useState([]) 
+function Dishes({filterDatas, Datas, SetDatas, setFilterDatas, isCorrect, setIsCorrect, isEdit, setIsEdit, setIsEditId}) {
 
   const addItemHandler = () => {
     setIsCorrect(!isCorrect)
   }
 
   const editItemHandler = (id) => {
-    if(Datas.length > 1) {
-      setRemoveDatas(Datas.filter(item => !(item.id === id)));
-    }
-    
+    setIsEditId(id);
+    setIsEdit(!isEdit)
   }
 
-  useEffect(()=>{
-    setFilterDatas(removeDatas);
-  }, [removeDatas, SetDatas])
   return (
     <div className="Dishes">
         <div className="addDish" onClick={addItemHandler}>
@@ -32,8 +25,8 @@ function Dishes({filterDatas, Datas, SetDatas, setFilterDatas, isCorrect, setIsC
               <h3>{item.text}</h3>
               <span>${item.price} - {item.bowls} Bowls </span>
               <div className="edit-btn" onClick={()=>{editItemHandler(item.id)}}>
-                <i className='bx bx-trash-alt' ></i> 
-                  <span>Remove dish</span>
+                <i className='bx bx-edit-alt' ></i> 
+                  <span>Edit dish</span>
               </div>
           </div>
         ))}
