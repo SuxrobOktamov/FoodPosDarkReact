@@ -11,7 +11,7 @@ function AddItem({isCorrect, setIsCorrect, Datas, SetDatas}) {
     const FoodType = useRef();
     useEffect(()=>{
         setCount(Datas[Datas.length-1].id + 1);
-    }, [])
+    }, [Datas])
     const savaFormHandler = (e) => {
         e.preventDefault();
         SetDatas([
@@ -48,7 +48,7 @@ function AddItem({isCorrect, setIsCorrect, Datas, SetDatas}) {
         </div>
         <div className='form-control'>
             <label htmlFor='name'>Food Bowls</label>
-            <input ref={FoodBowls} required type='number' placeholder='10' />
+            <input ref={FoodBowls} type='number' placeholder='10' />
         </div>
         <div className='form-control'>
             <label htmlFor='number'>Select FoodType</label>

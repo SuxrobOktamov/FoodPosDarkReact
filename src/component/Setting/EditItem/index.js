@@ -1,5 +1,5 @@
 import { Button } from '@mui/material';
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react';
 
 function EditItem({Datas, SetDatas, isEdit, setIsEdit, isEditId }) {
     const FoodName = useRef();
@@ -33,7 +33,7 @@ function EditItem({Datas, SetDatas, isEdit, setIsEdit, isEditId }) {
             </div>
             <div className='form-control'>
                 <label htmlFor='number'>Food price</label>
-                <input ref={FoodPrice} required type='number' placeholder='2.99 $' />
+                <input ref={FoodPrice} type='number' placeholder='2.99 $' />
             </div>
         </div>
         <div className='form-control'>
